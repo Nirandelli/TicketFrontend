@@ -1,15 +1,20 @@
 
-function Table() {
+import {
+  Table,
+  Card
+} from 'reactstrap';
+
+const Tickets = () => {
   return (
     <div>
-      <div class="card">
+      <Card>
         <div class="card-body">
           <h5 class="card-title">MIS TICKETS</h5>
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button type="button" class="btn btn-outline-secondary">Crear Ticket</button>
           </div><br></br>
           <div class="table-responsive">
-            <table class="table">
+            <Table class="table">
               <thead class="table-dark">
                 <tr>
                   <th scope="col">#</th>
@@ -44,12 +49,12 @@ function Table() {
                   <td>@twitter</td>
                 </tr>
               </tbody>
-            </table>
+            </Table>
           </div>
         </div>
-      </div>
+      </Card>
     </div>
   );
 }
 
-export default Table;
+export default Tickets;

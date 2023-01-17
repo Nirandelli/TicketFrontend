@@ -8,16 +8,16 @@
     width: 80%;
 }
 
-.iconStatus{
+.iconStatus {
     width: 50%;
     padding: 20px;
 }
 
-.iconStatus > span {
+.iconStatus>span {
     font-size: 30px;
 }
-  
-.numberStatus{
+
+.numberStatus {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -28,7 +28,7 @@
     font-size: 30px;
 }
 
-.sectionPerfil{
+.sectionPerfil {
     /* box-shadow: 2px 2px 2px 2px rgb(215, 215, 215); */
     width: 60%;
     display: flex;
@@ -40,7 +40,7 @@
     color: #fff;
 }
 
-.btnPerfil{
+.btnPerfil {
     width: 100%;
 }
 
@@ -65,7 +65,7 @@
     margin: auto;
 }
 
-.grey--text{
+.grey--text {
     color: #504646e6;
 }
 
@@ -78,15 +78,20 @@
     margin-top: 15px;
 }
 
-.listDatosCont > li {
+.listDatosCont>li {
     list-style: none;
     margin-bottom: 10px;
 }
 
-.cerrarSesion{
+.cerrarSesion {
     margin: auto;
 }
 
-.cerrarSesion > button{
+.cerrarSesion>button {
     margin: 20px;
+}
+
+.test {
+
+    background: red;
 }
