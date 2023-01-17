@@ -1,19 +1,32 @@
 import StatusCard from '../component/StatusCard';
 import Tickets from '../component/Tickets';
 import Perfil from '../component/Perfil';
+import { 
+    Container,
+    Row,
+    Col
+} from 'reactstrap';
 
+const styles ={
+    display: 'flex',
+    flexWrap: 'wrap',
+    marginTop: '30px',
+    height: '100vh',
+}
 const Home = () => (
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-8">
+    <Container 
+        fluid
+    >
+        <Row  style={styles}>
+            <Col xs="8">
                 <StatusCard />
                 <Tickets />
-            </div>
-            <div class="col-4">
+            </Col>
+            <Col xs="4">
                 <Perfil />
-            </div>
-        </div>
-    </div>
+            </Col>
+        </Row>
+    </Container>
 )
 
 export default Home;

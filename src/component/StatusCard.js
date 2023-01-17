@@ -1,9 +1,15 @@
+import { 
+  Row,
+  Col
+} from 'reactstrap';
 
 function StatusCard() {
+
     return (
       <div>
-       <div class="row align-items-start">
-          <div class="col-4">
+      
+       <Row>
+          <Col xs="4">
             <div class="shadow-sm statusCard">
                 <div class="iconStatus bg-warning"> 
                   <span class="card-category">5</span>
@@ -13,9 +19,9 @@ function StatusCard() {
                   <p class="card-title">Pendientes</p>
                 </div>
             </div>
-          </div>
+          </Col>
 
-          <div class="col-4">
+          <Col xs="4">
             <div class="shadow-sm statusCard">
                 <div class="iconStatus  bg-info"> 
                   <span class="card-category">5</span>
@@ -25,9 +31,9 @@ function StatusCard() {
                   <p class="card-title">Pendientes</p>
                 </div>
             </div>
-          </div>
+          </Col>
 
-          <div class="col-4">
+          <Col xs="4">
             <div class="shadow-sm statusCard">
                 <div class="iconStatus bg-success"> 
                   <span class="card-category">5</span>
@@ -37,8 +43,8 @@ function StatusCard() {
                   <p class="card-title">Cerrados</p>
                 </div>
             </div>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
     );
   }
