@@ -80,10 +80,32 @@ const Tickets = (props) => {
         <Form >
           <FormGroup className="pb-2 mr-sm-2 mb-sm-0">
               <Label for="correo" className="mr-sm-2">
-                  Nombre
+                  Asunto
               </Label>
               <Input
-                  type="email"
+                  type="text"
+                  name="Asunto"
+                  id="Asunto"
+                  placeholder="Asunto"
+              />
+          </FormGroup>
+          <FormGroup className="pb-2 mr-sm-2 mb-sm-0">
+              <Label for="correo" className="mr-sm-2">
+                  Tipo de servicio
+              </Label>
+              <Input
+                  type="text"
+                  name="email"
+                  id="correo"
+                  placeholder="example: Pagina no carga"
+              />
+          </FormGroup>
+          <FormGroup className="pb-2 mr-sm-2 mb-sm-0">
+              <Label for="correo" className="mr-sm-2">
+                  Prioridad
+              </Label>
+              <Input
+                  type="text"
                   name="email"
                   id="correo"
                   placeholder="example: Pagina no carga"
