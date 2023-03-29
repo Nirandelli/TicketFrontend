@@ -3,9 +3,10 @@ import {useNavigate, Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {DateTime} from 'luxon';
 import {useTranslation} from 'react-i18next';
-import {logoutUser} from '@store/reducers/auth';
+import {logoutUser, loadUser} from '@store/reducers/auth';
 import styled from 'styled-components';
 import {PfDropdown, PfImage} from '@profabric/react-components';
+import intance from '@app/utils/axios';
 
 const StyledSmallUserImage = styled(PfImage)`
   margin-top: 3px;
@@ -112,14 +113,21 @@ const UserDropdown = () => {
   const logOut = (event: any) => {
     event.preventDefault();
     setDropdownOpen(false);
-    dispatch(logoutUser());
-    navigate('/login');
+    intance
+      .post('/logout')
+      .then((response: any) => {
+        dispatch(logoutUser());
+        navigate('/login');
+      })
+      .catch((error: any) => {
+        dispatch(logoutUser());
+      });
   };
 
   const navigateToProfile = (event: any) => {
     event.preventDefault();
     setDropdownOpen(false);
-    navigate('/profile');
+    // navigate('/profile');
   };
 
   return (
@@ -153,19 +161,6 @@ const UserDropdown = () => {
             </small>
           </p>
         </UserHeader>
-        <UserBody>
-          <div className="row">
-            <div className="col-4 text-center">
-              <Link to="/">{t<string>('header.user.followers')}</Link>
-            </div>
-            <div className="col-4 text-center">
-              <Link to="/">{t<string>('header.user.sales')}</Link>
-            </div>
-            <div className="col-4 text-center">
-              <Link to="/">{t<string>('header.user.friends')}</Link>
-            </div>
-          </div>
-        </UserBody>
         <UserFooter>
           <button
             type="button"

@@ -14,8 +14,6 @@ import * as AuthService from '../../services/auth';
 
 const Register = () => {
   const [isAuthLoading, setAuthLoading] = useState(false);
-  const [isGoogleAuthLoading, setGoogleAuthLoading] = useState(false);
-  const [isFacebookAuthLoading, setFacebookAuthLoading] = useState(false);
   const [t] = useTranslation();
   const dispatch = useDispatch();
 
@@ -32,35 +30,6 @@ const Register = () => {
     } catch (error: any) {
       toast.error(error.message || 'Failed');
       setAuthLoading(false);
-    }
-  };
-
-  const registerByGoogle = async () => {
-    try {
-      setGoogleAuthLoading(true);
-      const token = await AuthService.registerByGoogle();
-      setGoogleAuthLoading(false);
-      dispatch(loginUser(token));
-      toast.success('Authentication is succeed!');
-      navigate('/');
-    } catch (error: any) {
-      toast.error(error.message || 'Failed');
-      setGoogleAuthLoading(false);
-    }
-  };
-
-  const registerByFacebook = async () => {
-    try {
-      setFacebookAuthLoading(true);
-
-      const token = await AuthService.registerByFacebook();
-      setFacebookAuthLoading(false);
-      dispatch(loginUser(token));
-      toast.success('Register is succeeded!');
-      navigate('/');
-    } catch (error: any) {
-      setFacebookAuthLoading(false);
-      toast.error(error.message || 'Failed');
     }
   };
 
