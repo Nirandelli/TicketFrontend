@@ -9,10 +9,7 @@ export interface AuthState {
 const initialState: AuthState = {
   isLoggedIn: !!localStorage.getItem('token'),
   token: localStorage.getItem('token'),
-  currentUser: {
-    email: 'mail@example.com',
-    picture: null
-  }
+  currentUser: localStorage.getItem('user_data')
 };
 
 export const authSlice = createSlice({
@@ -31,6 +28,7 @@ export const authSlice = createSlice({
       state.token = null;
     },
     loadUser: (state, {payload}) => {
+      localStorage.setItem('user_data', payload);
       state.currentUser = payload;
     }
   }

@@ -115,11 +115,11 @@ const UserDropdown = () => {
     setDropdownOpen(false);
     intance
       .post('/logout')
-      .then((response: any) => {
+      .then(() => {
         dispatch(logoutUser());
         navigate('/login');
       })
-      .catch((error: any) => {
+      .catch(() => {
         dispatch(logoutUser());
       });
   };
@@ -154,7 +154,7 @@ const UserDropdown = () => {
           <p>
             {user.email}
             <small>
-              <span>Member since </span>
+              <span>Miembro desde </span>
               <span>
                 {DateTime.fromISO(user.createdAt).toFormat('dd LLL yyyy')}
               </span>
