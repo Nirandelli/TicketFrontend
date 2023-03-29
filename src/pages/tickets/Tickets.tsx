@@ -13,7 +13,9 @@ const Tickets = () => {
             <div className="card-header">
               <h3 className="card-title">Listado de tickets</h3>
               <div className="card-tools">
-                <Button variant="secondary">Nuevo Ticket</Button>{' '}
+                <Button href="/crear-ticket" variant="secondary">
+                  Nuevo Ticket
+                </Button>{' '}
               </div>
             </div>
             <div className="card-body">

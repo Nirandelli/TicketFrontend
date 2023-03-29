@@ -14,6 +14,7 @@ import Profile from '@pages/profile/Profile';
 
 import PublicRoute from './routes/PublicRoute';
 import PrivateRoute from './routes/PrivateRoute';
+import FormTicket from './pages/tickets/FormTicket';
 
 const App = () => {
   const windowSize = useWindowSize();
@@ -36,6 +37,7 @@ const App = () => {
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/" element={<Main />}>
             <Route path="/tickets" element={<Tickets />} />
+            <Route path="/crear-ticket" element={<FormTicket />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/" element={<Dashboard />} />
           </Route>
