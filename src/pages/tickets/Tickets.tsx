@@ -32,19 +32,19 @@ const columns = [
   },
   {
     name: 'Status',
-    selector: (row) => row.status.nombre,
+    selector: (row) => getBadge(row.status),
     sortable: true
   },
   {
     name: 'Prioridad',
-    selector: (row) => row.prioridad,
+    selector: (row) => getBadgePrioridad(row.prioridad),
     sortable: true
   },
   {
     name: 'Tipo de servicio',
     selector: (row) => row.servicio.nombre,
     sortable: true
-  },
+  }
 ];
 
 const paginationComponentOptions = {
@@ -52,6 +52,42 @@ const paginationComponentOptions = {
   rangeSeparatorText: 'de',
   selectAllRowsItem: true,
   selectAllRowsItemText: 'Todos'
+};
+
+const getBadge = (status: any) => {
+  if (status.id === 1) {
+    return <span className="badge badge-primary">{status.nombre}</span>;
+  }
+
+  if (status.id === 2) {
+    return <span className="badge badge-info">{status.nombre}</span>;
+  }
+
+  if (status.id === 3) {
+    return <span className="badge badge-success">{status.nombre}</span>;
+  }
+
+  if (status.id === 4) {
+    return <span className="badge badge-danger">{status.nombre}</span>;
+  }
+
+  if (status.id === 5) {
+    return <span className="badge badge-warning">{status.nombre}</span>;
+  }
+};
+
+const getBadgePrioridad = (prioridad: string) => {
+  if (prioridad === 'alta') {
+    return <span className="badge badge-danger">{prioridad}</span>;
+  }
+
+  if (prioridad === 'media') {
+    return <span className="badge badge-warning">{prioridad}</span>;
+  }
+
+  if (prioridad === 'baja') {
+    return <span className="badge badge-success">{prioridad}</span>;
+  }
 };
 
 const Tickets = () => {
@@ -121,38 +157,6 @@ const Tickets = () => {
                 expandableRows
                 expandableRowsComponent={ExpandedComponent}
               />
-              {/* <Table striped bordered hover>
-                <thead>
-                  <tr>
-                    <th>Folio</th>
-                    <th>Fecha</th>
-                    <th>Asignado</th>
-                    <th>Asunto</th>
-                    <th>Status</th>
-                    <th>Prioridad</th>
-                    <th>Tipo de servicio</th>
-                    <th>Acción</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>0000006</td>
-                    <td>28-03-2023 10:19:02</td>
-                    <td>-</td>
-                    <td>No tengo internet</td>
-                    <td>
-                      <Badge bg="primary">nuevo</Badge>{' '}
-                    </td>
-                    <td>
-                      <Badge bg="warning" text="dark">
-                        media
-                      </Badge>{' '}
-                    </td>
-                    <td>Mantenimiento de impresoras</td>
-                    <td>mdo</td>
-                  </tr>
-                </tbody>
-              </Table> */}
             </div>
             <div className="card-footer">Footer</div>
           </div>
