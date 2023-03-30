@@ -35,7 +35,20 @@ const FormTicket = () => {
         navigate('/tickets');
       })
       .catch((error: any) => {
-        toast.error(error.response);
+        const fileds = [
+          'asunto',
+          'descripcion',
+          'prioridad',
+          'tipo_servicio_id'
+        ];
+
+        if (error.response.data.errors) {
+          fileds.forEach((element) => {
+            if (error.response.data.errors[element]) {
+              toast.error(error.response.data.errors[element][0]);
+            }
+          });
+        }
       });
   };
 
@@ -79,7 +92,9 @@ const FormTicket = () => {
             <Form onSubmit={handleSubmit}>
               <div className="card-body">
                 <Form.Group className="pb-2 mr-sm-2 mb-sm-0">
-                  <Form.Label className="mr-sm-2">Asunto</Form.Label>
+                  <Form.Label className="mr-sm-2">
+                    Asunto <span style={{color: 'red'}}>*</span>
+                  </Form.Label>
                   <Form.Control
                     type="text"
                     name="Asunto"
@@ -89,7 +104,9 @@ const FormTicket = () => {
                   />
                 </Form.Group>
                 <Form.Group className="pb-2 mr-sm-2 mb-sm-0">
-                  <Form.Label className="mr-sm-2">Tipo de servicio</Form.Label>
+                  <Form.Label className="mr-sm-2">
+                    Tipo de servicio <span style={{color: 'red'}}>*</span>
+                  </Form.Label>
                   <select
                     className="form-control"
                     onChange={(evt) => setServicio(evt.target.value)}
@@ -103,7 +120,9 @@ const FormTicket = () => {
                   </select>
                 </Form.Group>
                 <Form.Group className="pb-2 mr-sm-2 mb-sm-0">
-                  <Form.Label className="mr-sm-2">Prioridad</Form.Label>
+                  <Form.Label className="mr-sm-2">
+                    Prioridad <span style={{color: 'red'}}>*</span>
+                  </Form.Label>
                   <select
                     className="form-control"
                     onChange={(evt) => setPrioridad(evt.target.value)}
@@ -115,7 +134,9 @@ const FormTicket = () => {
                   </select>
                 </Form.Group>
                 <Form.Group className="pb-2 mr-sm-2 mb-sm-0">
-                  <Form.Label className="mr-sm-2">Descripción</Form.Label>
+                  <Form.Label className="mr-sm-2">
+                    Descripción <span style={{color: 'red'}}>*</span>
+                  </Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={5}
