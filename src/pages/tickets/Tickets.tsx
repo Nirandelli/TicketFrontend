@@ -49,12 +49,12 @@ const Tickets = () => {
     {
       name: 'Status',
       selector: (row) => getBadge(row.status),
-      sortable: true
+      sortable: false
     },
     {
       name: 'Prioridad',
       selector: (row) => getBadgePrioridad(row.prioridad),
-      sortable: true
+      sortable: false
     },
     {
       name: 'Acción',
@@ -70,6 +70,7 @@ const Tickets = () => {
     selectAllRowsItemText: 'Todos'
   };
 
+  // eslint-disable-next-line consistent-return
   const getBadge = (status: any) => {
     if (status.id === 1) {
       return <span className="badge badge-primary">{status.nombre}</span>;
@@ -92,6 +93,7 @@ const Tickets = () => {
     }
   };
 
+  // eslint-disable-next-line consistent-return
   const getBadgePrioridad = (prioridad: string) => {
     if (prioridad === 'alta') {
       return <span className="badge badge-danger">{prioridad}</span>;
@@ -179,7 +181,7 @@ const Tickets = () => {
               <div className="card-tools">
                 <Button href="/crear-ticket" variant="secondary">
                   Nuevo Ticket
-                </Button>{' '}
+                </Button>
               </div>
             </div>
             <div className="card-body">
