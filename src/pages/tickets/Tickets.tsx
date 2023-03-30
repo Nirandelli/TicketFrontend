@@ -6,89 +6,9 @@ import DataTable from 'react-data-table-component';
 import intance from '@app/utils/axios';
 import {DateTime} from 'luxon';
 import ExpandedComponent from '@app/components/tickets/ExpandedComponent';
-
-const columns = [
-  {
-    name: 'Folio',
-    selector: (row) => row.folio,
-    sortable: true
-  },
-  {
-    name: 'Fecha',
-    selector: (row) => {
-      return DateTime.fromISO(row.created_at).toFormat('dd LLL yyyy');
-    },
-    sortable: true
-  },
-  {
-    name: 'Asignado',
-    selector: (row) => (row.asignado ? row.asignado.name : '-'),
-    sortable: true
-  },
-  {
-    name: 'Asunto',
-    selector: (row) => row.asunto,
-    sortable: true
-  },
-  {
-    name: 'Status',
-    selector: (row) => getBadge(row.status),
-    sortable: true
-  },
-  {
-    name: 'Prioridad',
-    selector: (row) => getBadgePrioridad(row.prioridad),
-    sortable: true
-  },
-  {
-    name: 'Tipo de servicio',
-    selector: (row) => row.servicio.nombre,
-    sortable: true
-  }
-];
-
-const paginationComponentOptions = {
-  rowsPerPageText: 'Filas por página',
-  rangeSeparatorText: 'de',
-  selectAllRowsItem: true,
-  selectAllRowsItemText: 'Todos'
-};
-
-const getBadge = (status: any) => {
-  if (status.id === 1) {
-    return <span className="badge badge-primary">{status.nombre}</span>;
-  }
-
-  if (status.id === 2) {
-    return <span className="badge badge-info">{status.nombre}</span>;
-  }
-
-  if (status.id === 3) {
-    return <span className="badge badge-success">{status.nombre}</span>;
-  }
-
-  if (status.id === 4) {
-    return <span className="badge badge-danger">{status.nombre}</span>;
-  }
-
-  if (status.id === 5) {
-    return <span className="badge badge-warning">{status.nombre}</span>;
-  }
-};
-
-const getBadgePrioridad = (prioridad: string) => {
-  if (prioridad === 'alta') {
-    return <span className="badge badge-danger">{prioridad}</span>;
-  }
-
-  if (prioridad === 'media') {
-    return <span className="badge badge-warning">{prioridad}</span>;
-  }
-
-  if (prioridad === 'baja') {
-    return <span className="badge badge-success">{prioridad}</span>;
-  }
-};
+import {logoutUser} from '@app/store/reducers/auth';
+import {useNavigate} from 'react-router-dom';
+import store from '@app/store/store';
 
 const Tickets = () => {
   const [tickets, setTickets] = useState([]);
@@ -96,15 +16,126 @@ const Tickets = () => {
   const [totalRows, setTotalRows] = useState(0);
   const [perPage, setPerPage] = useState(10);
 
+  const navigate = useNavigate();
+
+  const columns = [
+    {
+      name: 'Folio',
+      selector: (row) => row.folio,
+      sortable: true
+    },
+    {
+      name: 'Asunto',
+      selector: (row) => row.asunto,
+      sortable: true
+    },
+    {
+      name: 'Tipo de servicio',
+      selector: (row) => row.servicio.nombre,
+      sortable: true
+    },
+    {
+      name: 'Fecha',
+      selector: (row) => {
+        return DateTime.fromISO(row.created_at).toFormat('dd LLL yyyy');
+      },
+      sortable: true
+    },
+    {
+      name: 'Asignado',
+      selector: (row) => (row.asignado ? row.asignado.name : '-'),
+      sortable: true
+    },
+    {
+      name: 'Status',
+      selector: (row) => getBadge(row.status),
+      sortable: true
+    },
+    {
+      name: 'Prioridad',
+      selector: (row) => getBadgePrioridad(row.prioridad),
+      sortable: true
+    },
+    {
+      name: 'Acción',
+      selector: (row) => getButtons(row.id),
+      sortable: false
+    }
+  ];
+
+  const paginationComponentOptions = {
+    rowsPerPageText: 'Filas por página',
+    rangeSeparatorText: 'de',
+    selectAllRowsItem: true,
+    selectAllRowsItemText: 'Todos'
+  };
+
+  const getBadge = (status: any) => {
+    if (status.id === 1) {
+      return <span className="badge badge-primary">{status.nombre}</span>;
+    }
+
+    if (status.id === 2) {
+      return <span className="badge badge-info">{status.nombre}</span>;
+    }
+
+    if (status.id === 3) {
+      return <span className="badge badge-success">{status.nombre}</span>;
+    }
+
+    if (status.id === 4) {
+      return <span className="badge badge-danger">{status.nombre}</span>;
+    }
+
+    if (status.id === 5) {
+      return <span className="badge badge-warning">{status.nombre}</span>;
+    }
+  };
+
+  const getBadgePrioridad = (prioridad: string) => {
+    if (prioridad === 'alta') {
+      return <span className="badge badge-danger">{prioridad}</span>;
+    }
+
+    if (prioridad === 'media') {
+      return <span className="badge badge-warning">{prioridad}</span>;
+    }
+
+    if (prioridad === 'baja') {
+      return <span className="badge badge-success">{prioridad}</span>;
+    }
+  };
+
+  const getButtons = (id: number) => {
+    return (
+      <button
+        type="button"
+        onClick={() => navigate(`/comentarios/${id}`)}
+        className="btn btn-info"
+      >
+        <i className="fas fa-comments" />
+      </button>
+    );
+  };
+
   const getTickets = async (page: number) => {
     setLoading(true);
 
-    const response = await intance.get(
-      `/tickets?page=${page}&per_page=${perPage}`
-    );
+    const response = await intance
+      .get(`/tickets?page=${page}&per_page=${perPage}`)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        store.dispatch(logoutUser());
+        navigate('/login');
+      });
 
-    setTickets(response.data.data.data);
-    setTotalRows(response.data.data.total);
+    if (response) {
+      setTickets(response.data.data.data);
+      setTotalRows(response.data.data.total);
+    }
+
     setLoading(false);
   };
 
@@ -115,11 +146,20 @@ const Tickets = () => {
   const handlePerRowsChange = async (newPerPage: number, page: number) => {
     setLoading(true);
 
-    const response = await intance.get(
-      `/tickets?page=${page}&per_page=${newPerPage}`
-    );
+    const response = await intance
+      .get(`/tickets?page=${page}&per_page=${newPerPage}`)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        store.dispatch(logoutUser());
+        navigate('/login');
+      });
 
-    setTickets(response.data.data.data);
+    if (response) {
+      setTickets(response.data.data.data);
+    }
+
     setPerPage(newPerPage);
     setLoading(false);
   };
@@ -144,7 +184,7 @@ const Tickets = () => {
             </div>
             <div className="card-body">
               <DataTable
-                title="Tickets"
+                title=""
                 columns={columns}
                 data={tickets}
                 progressPending={loading}
@@ -156,9 +196,10 @@ const Tickets = () => {
                 paginationComponentOptions={paginationComponentOptions}
                 expandableRows
                 expandableRowsComponent={ExpandedComponent}
+                highlightOnHover
               />
             </div>
-            <div className="card-footer">Footer</div>
+            <div className="card-footer" />
           </div>
         </div>
       </section>
