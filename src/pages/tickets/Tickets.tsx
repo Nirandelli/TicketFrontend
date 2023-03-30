@@ -1,9 +1,97 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {ContentHeader} from '@components';
 import {Table, Button, Badge} from 'react-bootstrap';
+import DataTable from 'react-data-table-component';
+import intance from '@app/utils/axios';
+import {DateTime} from 'luxon';
+import ExpandedComponent from '@app/components/tickets/ExpandedComponent';
+
+const columns = [
+  {
+    name: 'Folio',
+    selector: (row) => row.folio,
+    sortable: true
+  },
+  {
+    name: 'Fecha',
+    selector: (row) => {
+      return DateTime.fromISO(row.created_at).toFormat('dd LLL yyyy');
+    },
+    sortable: true
+  },
+  {
+    name: 'Asignado',
+    selector: (row) => (row.asignado ? row.asignado.name : '-'),
+    sortable: true
+  },
+  {
+    name: 'Asunto',
+    selector: (row) => row.asunto,
+    sortable: true
+  },
+  {
+    name: 'Status',
+    selector: (row) => row.status.nombre,
+    sortable: true
+  },
+  {
+    name: 'Prioridad',
+    selector: (row) => row.prioridad,
+    sortable: true
+  },
+  {
+    name: 'Tipo de servicio',
+    selector: (row) => row.servicio.nombre,
+    sortable: true
+  },
+];
+
+const paginationComponentOptions = {
+  rowsPerPageText: 'Filas por página',
+  rangeSeparatorText: 'de',
+  selectAllRowsItem: true,
+  selectAllRowsItemText: 'Todos'
+};
 
 const Tickets = () => {
+  const [tickets, setTickets] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [totalRows, setTotalRows] = useState(0);
+  const [perPage, setPerPage] = useState(10);
+
+  const getTickets = async (page: number) => {
+    setLoading(true);
+
+    const response = await intance.get(
+      `/tickets?page=${page}&per_page=${perPage}`
+    );
+
+    setTickets(response.data.data.data);
+    setTotalRows(response.data.data.total);
+    setLoading(false);
+  };
+
+  const handlePageChange = (page: number) => {
+    getTickets(page);
+  };
+
+  const handlePerRowsChange = async (newPerPage: number, page: number) => {
+    setLoading(true);
+
+    const response = await intance.get(
+      `/tickets?page=${page}&per_page=${newPerPage}`
+    );
+
+    setTickets(response.data.data.data);
+    setPerPage(newPerPage);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    getTickets(1);
+  }, []);
+
   return (
     <div>
       <ContentHeader title="Tickets" />
@@ -19,7 +107,21 @@ const Tickets = () => {
               </div>
             </div>
             <div className="card-body">
-              <Table striped bordered hover>
+              <DataTable
+                title="Tickets"
+                columns={columns}
+                data={tickets}
+                progressPending={loading}
+                pagination
+                paginationServer
+                paginationTotalRows={totalRows}
+                onChangePage={handlePageChange}
+                onChangeRowsPerPage={handlePerRowsChange}
+                paginationComponentOptions={paginationComponentOptions}
+                expandableRows
+                expandableRowsComponent={ExpandedComponent}
+              />
+              {/* <Table striped bordered hover>
                 <thead>
                   <tr>
                     <th>Folio</th>
@@ -50,7 +152,7 @@ const Tickets = () => {
                     <td>mdo</td>
                   </tr>
                 </tbody>
-              </Table>
+              </Table> */}
             </div>
             <div className="card-footer">Footer</div>
           </div>
