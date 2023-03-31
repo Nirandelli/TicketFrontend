@@ -10,6 +10,7 @@ import {setWindowSize} from '@app/store/reducers/ui';
 
 import Dashboard from '@pages/Dashboard';
 import Tickets from '@pages/tickets/Tickets';
+import Comentarios from '@pages/comentarios/Comentarios';
 import Profile from '@pages/profile/Profile';
 
 import PublicRoute from './routes/PublicRoute';
@@ -38,6 +39,7 @@ const App = () => {
           <Route path="/" element={<Main />}>
             <Route path="/tickets" element={<Tickets />} />
             <Route path="/crear-ticket" element={<FormTicket />} />
+            <Route path="/comentarios-ticket/:id" element={<Comentarios />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/" element={<Dashboard />} />
           </Route>

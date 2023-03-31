@@ -84,7 +84,7 @@ const FormTicket = () => {
       <ContentHeader title="Tickets" />
       <section className="content">
         <div className="container-fluid">
-          <div className="card">
+          <div className="card card card-dark card-outline">
             <div className="card-header">
               <h3 className="card-title">Crear ticket</h3>
               <div className="card-tools" />

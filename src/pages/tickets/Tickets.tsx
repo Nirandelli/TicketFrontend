@@ -112,7 +112,7 @@ const Tickets = () => {
     return (
       <button
         type="button"
-        onClick={() => navigate(`/comentarios/${id}`)}
+        onClick={() => navigate(`/comentarios-ticket/${id}`)}
         className="btn btn-info"
       >
         <i className="fas fa-comments" />
@@ -175,7 +175,7 @@ const Tickets = () => {
       <ContentHeader title="Tickets" />
       <section className="content">
         <div className="container-fluid">
-          <div className="card">
+          <div className="card card-dark card-outline">
             <div className="card-header">
               <h3 className="card-title">Listado de tickets</h3>
               <div className="card-tools">
@@ -187,6 +187,7 @@ const Tickets = () => {
             <div className="card-body">
               <DataTable
                 title=""
+                className="datatables-basic table table-bordered table-hover"
                 columns={columns}
                 data={tickets}
                 progressPending={loading}
