@@ -67,6 +67,13 @@ const Comentarios = () => {
                 >
                   {comentarios.length}
                 </span>
+                {/* <button
+                  type="button"
+                  onClick={() => getComentarios()}
+                  className="btn btn-default btn-sm"
+                >
+                  <i className="fas fa-loader" />
+                </button> */}
               </div>
             </div>
             <div className="card-body">
