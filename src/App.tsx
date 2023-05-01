@@ -12,10 +12,12 @@ import Dashboard from '@pages/Dashboard';
 import Tickets from '@pages/tickets/Tickets';
 import Comentarios from '@pages/comentarios/Comentarios';
 import Profile from '@pages/profile/Profile';
+import Eventos from '@pages/eventos/Eventos';
 
 import PublicRoute from './routes/PublicRoute';
 import PrivateRoute from './routes/PrivateRoute';
 import FormTicket from './pages/tickets/FormTicket';
+import FormEvento from './pages/eventos/FormEvento';
 
 const App = () => {
   const windowSize = useWindowSize();
@@ -40,6 +42,8 @@ const App = () => {
             <Route path="/tickets" element={<Tickets />} />
             <Route path="/crear-ticket" element={<FormTicket />} />
             <Route path="/comentarios-ticket/:id" element={<Comentarios />} />
+            <Route path="/eventos" element={<Eventos />} />
+            <Route path="/crear-evento" element={<FormEvento />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/" element={<Dashboard />} />
           </Route>
