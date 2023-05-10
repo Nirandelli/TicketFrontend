@@ -10,6 +10,9 @@
     "format": "prettier-eslint $PWD/'src/**/*.{js,json}' --write",
     "lint": "eslint src/**/*.js"
   },
+    "overrides": {
+    "autoprefixer": "10.4.5"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
