@@ -37,7 +37,7 @@ const Eventos = () => {
     {
       name: 'Coordinador',
       selector: (row) => {
-        return row.coordinador.name;
+        return row.coordinador;
       },
       sortable: true
     },

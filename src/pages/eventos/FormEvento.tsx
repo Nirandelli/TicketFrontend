@@ -12,6 +12,7 @@ const FormEvento = () => {
   const [tipoEventos, setTipoEventos] = useState([]);
   const [lugarEventos, setLugarEventos] = useState([]);
   const [nombre, setNombre] = useState('');
+  const [coordinador, setCoordinador] = useState('');
   const [descripcion, setDescripcion] = useState('');
   const [tipo, setTipo] = useState('');
   const [extInt, setExtInt] = useState('');
@@ -30,6 +31,7 @@ const FormEvento = () => {
       .post('/eventos/guardar', {
         nombre,
         descripcion,
+        coordinador,
         tipo_evento_id: tipo,
         int_ext: extInt,
         lugar_evento_id: lugar,
@@ -100,6 +102,17 @@ const FormEvento = () => {
                     name="nombre"
                     placeholder="Nombre del evento"
                     onChange={(evt) => setNombre(evt.target.value)}
+                  />
+                </Form.Group>
+                <Form.Group className="pb-2 mr-sm-2 mb-sm-0">
+                  <Form.Label className="mr-sm-2">
+                    Coordinador <span style={{color: 'red'}}>*</span>
+                  </Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="coordinador"
+                    placeholder="Coordinador"
+                    onChange={(evt) => setCoordinador(evt.target.value)}
                   />
                 </Form.Group>
                 <Form.Group className="pb-2 mr-sm-2 mb-sm-0">

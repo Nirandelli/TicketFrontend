@@ -8,7 +8,7 @@ const ExpandedComponent = ({data}: any) => {
       <p>Nombre del evento: {data.nombre}</p>
       <p>Evento Int/Ext: {data.int_ext}</p>
       <p>Fecha: {`${data.fecha_inicio} a ${data.fecha_fin}`}</p>
-      <p>Coordinador: {data.coordinador.name}</p>
+      <p>Coordinador: {data.coordinador}</p>
       <p>Tipo de evento: {data.tipo.nombre}</p>
       <p>Lugar del evento: {data.lugar.nombre}</p>
       <p>Autorizado: {data.autorizado}</p>
