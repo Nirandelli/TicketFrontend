@@ -46,7 +46,8 @@
   "header": {
     "label": {
       "tickets": "Tickets",
-      "eventos": "Eventos"
+      "eventos": "Eventos",
+      "home": "Home"
     },
     "language": {
       "turkish": "Turkish",
