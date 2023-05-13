@@ -21,12 +21,17 @@ const Tickets = () => {
   const columns = [
     {
       name: 'Folio',
-      selector: (row) => row.folio,
+      selector: (row) => `#${row.folio}`,
       sortable: true
     },
     {
       name: 'Asunto',
       selector: (row) => row.asunto,
+      sortable: true
+    },
+    {
+      name: 'Solicitante',
+      selector: (row) => row.solicitante,
       sortable: true
     },
     {

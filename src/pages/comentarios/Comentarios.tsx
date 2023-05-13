@@ -67,13 +67,13 @@ const Comentarios = () => {
                 >
                   {comentarios.length}
                 </span>
-                {/* <button
+                <button
                   type="button"
                   onClick={() => getComentarios()}
                   className="btn btn-default btn-sm"
                 >
-                  <i className="fas fa-loader" />
-                </button> */}
+                  <i className="fas fa-cogs" />
+                </button>
               </div>
             </div>
             <div className="card-body">
@@ -142,6 +142,7 @@ const Comentarios = () => {
                     name="comentarios"
                     placeholder="Escribir comentario ..."
                     className="form-control"
+                    value={comentario}
                     onChange={(evt) => setComentario(evt.target.value)}
                   />
                   <span className="input-group-append">
@@ -151,6 +152,14 @@ const Comentarios = () => {
                   </span>
                 </div>
               </form>
+              <br />
+              <button
+                type="button"
+                onClick={() => navigate('/tickets')}
+                className="btn btn-warning"
+              >
+                Cancelar
+              </button>
             </div>
           </div>
         </div>

@@ -11,6 +11,7 @@ import {useNavigate} from 'react-router-dom';
 const FormTicket = () => {
   const [servicios, setServicios] = useState([]);
   const [asunto, setAsunto] = useState('');
+  const [solicitante, setSolicitante] = useState('');
   const [descripcion, setDescripcion] = useState('');
   const [prioridad, setPrioridad] = useState('');
   const [servicio, setServicio] = useState('');
@@ -25,6 +26,7 @@ const FormTicket = () => {
       .post('/tickets/guardar', {
         asunto,
         descripcion,
+        solicitante,
         prioridad,
         tipo_servicio_id: servicio,
         archivo
@@ -101,6 +103,18 @@ const FormTicket = () => {
                     id="Asunto"
                     placeholder="Asunto"
                     onChange={(evt) => setAsunto(evt.target.value)}
+                  />
+                </Form.Group>
+                <Form.Group className="pb-2 mr-sm-2 mb-sm-0">
+                  <Form.Label className="mr-sm-2">
+                    Solicitante <span style={{color: 'red'}}>*</span>
+                  </Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="Solicitante"
+                    id="Solicitante"
+                    placeholder="Solicitante"
+                    onChange={(evt) => setSolicitante(evt.target.value)}
                   />
                 </Form.Group>
                 <Form.Group className="pb-2 mr-sm-2 mb-sm-0">

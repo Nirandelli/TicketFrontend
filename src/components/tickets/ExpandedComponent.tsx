@@ -17,8 +17,9 @@ import {ExpanderComponentProps} from 'react-data-table-component';
 const ExpandedComponent = ({data}: any) => {
   return (
     <>
-      <p>Folio: {data.folio}</p>
+      <p>Folio: #{data.folio}</p>
       <p>Asunto: {data.asunto}</p>
+      <p>Solicitante: {data.solicitante}</p>
       <p>Prioridad: {data.prioridad}</p>
       <p>Estatus: {data.status.nombre}</p>
       <p>Asignado: {data.asignado ? data.asignado.name : ''}</p>
