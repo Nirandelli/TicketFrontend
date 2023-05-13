@@ -15,7 +15,7 @@
         "label": "Sign Up",
         "social": "Sign up using {{what}}"
       },
-      "signOut": "Sign Out"
+      "signOut": "Cerrar sesión"
     }
   },
   "register": {

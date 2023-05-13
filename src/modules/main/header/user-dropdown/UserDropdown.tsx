@@ -107,7 +107,7 @@ const UserDropdown = () => {
   const navigate = useNavigate();
   const [t] = useTranslation();
   const dispatch = useDispatch();
-  const user = useSelector((state: any) => state.auth.currentUser);
+  const user = JSON.parse(localStorage.getItem('user_data'));
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const logOut = (event: any) => {
@@ -162,13 +162,13 @@ const UserDropdown = () => {
           </p>
         </UserHeader>
         <UserFooter>
-          <button
+          {/* <button
             type="button"
             className="btn btn-default btn-flat"
             onClick={navigateToProfile}
           >
             {t<string>('header.user.profile')}
-          </button>
+          </button> */}
           <button
             type="button"
             className="btn btn-default btn-flat float-right"
