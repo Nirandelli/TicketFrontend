@@ -15,7 +15,7 @@ const FormTicket = () => {
   const [descripcion, setDescripcion] = useState('');
   const [prioridad, setPrioridad] = useState('');
   const [servicio, setServicio] = useState('');
-  const [archivo, setArchivo] = useState('');
+  const [archivo, setArchivo] = useState(null);
 
   const navigate = useNavigate();
 
