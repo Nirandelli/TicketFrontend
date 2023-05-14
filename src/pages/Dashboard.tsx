@@ -28,7 +28,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <ContentHeader title="Dashboard" />
+      <ContentHeader title="Interfaz" />
 
       <section className="content">
         <div className="container-fluid">

@@ -47,7 +47,7 @@
     "label": {
       "tickets": "Tickets",
       "eventos": "Eventos",
-      "home": "Home"
+      "home": "Inicio"
     },
     "language": {
       "turkish": "Turkish",
@@ -76,7 +76,7 @@
   },
   "menusidebar": {
     "label": {
-      "dashboard": "Dashboard",
+      "dashboard": "Interfaz",
       "profile": "Profile",
       "blank": "Blank",
       "mainMenu": "Main Menu",
