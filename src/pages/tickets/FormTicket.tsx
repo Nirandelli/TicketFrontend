@@ -165,6 +165,7 @@ const FormTicket = () => {
                     id="files"
                     name="file"
                     type="file"
+                    accept="image/*"
                     onChange={onChangeFiles}
                   />
                 </Form.Group>
