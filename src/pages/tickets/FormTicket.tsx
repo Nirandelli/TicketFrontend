@@ -55,6 +55,24 @@ const FormTicket = () => {
   };
 
   const onChangeFiles = (evt: any) => {
+    const archivo = evt.target.files[0];
+
+    if (!archivo) {
+      toast.error('No se cargaron imagenes');
+      setArchivo(null);
+      return;
+    }
+    const nombArchivo = archivo.name;
+    let extension = nombArchivo.split('.').slice(-1);
+    extension = extension[0];
+    const extensiones = ['jpg', 'png', 'jpeg', 'gif'];
+
+    if (extensiones.indexOf(extension) === -1) {
+      toast.error('Extensión NO permitida');
+      setArchivo(null);
+      return;
+    }
+
     fileToBase64(evt.target.files[0], (response: string) => {
       setArchivo(response);
     });
