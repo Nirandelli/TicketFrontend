@@ -2,7 +2,7 @@ import axios, {AxiosRequestConfig} from 'axios';
 import store from '@store/store';
 import {logoutUser} from '@store/reducers/auth';
 
-const baseURL = 'http://localhost/api/';
+const baseURL = 'http://uticav.com:81/api/';
 
 const intance = axios.create({
   baseURL

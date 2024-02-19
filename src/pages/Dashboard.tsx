@@ -41,7 +41,7 @@ const Dashboard = () => {
                   <p>Tickets {statuses ? statuses[0].nombre : ''}</p>
                 </div>
                 <div className="icon">
-                  <i className="ion ion-bag" />
+                  <i className="fas fa-ticket-alt" />
                 </div>
                 <a
                   onClick={() => navigate('/tickets')}
@@ -59,7 +59,7 @@ const Dashboard = () => {
                   <p>Tickets {statuses ? statuses[1].nombre : ''}</p>
                 </div>
                 <div className="icon">
-                  <i className="ion ion-bag" />
+                  <i className="fas fa-ticket-alt" />
                 </div>
                 <a
                   onClick={() => navigate('/tickets')}
@@ -77,7 +77,7 @@ const Dashboard = () => {
                   <p>Tickets {statuses ? statuses[2].nombre : ''}</p>
                 </div>
                 <div className="icon">
-                  <i className="ion ion-bag" />
+                  <i className="fas fa-ticket-alt" />
                 </div>
                 <a
                   onClick={() => navigate('/tickets')}
@@ -95,7 +95,7 @@ const Dashboard = () => {
                   <p>Tickets {statuses ? statuses[3].nombre : ''}</p>
                 </div>
                 <div className="icon">
-                  <i className="ion ion-bag" />
+                  <i className="fas fa-ticket-alt" />
                 </div>
                 <a
                   onClick={() => navigate('/tickets')}
@@ -113,7 +113,7 @@ const Dashboard = () => {
                   <p>Tickets {statuses ? statuses[4].nombre : ''}</p>
                 </div>
                 <div className="icon">
-                  <i className="ion ion-bag" />
+                  <i className="fas fa-ticket-alt" />
                 </div>
                 <a
                   onClick={() => navigate('/tickets')}
